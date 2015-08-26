@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Remaining;
 
 class SiteController extends Controller
 {
@@ -87,6 +88,11 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    public function actionCheck_user(){
+        $app = Remaining::findAll(['id'=>1]);
+        var_dump($app);
     }
 
     public function actionAbout()
