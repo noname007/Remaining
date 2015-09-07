@@ -112,6 +112,7 @@ class SiteController extends Controller
 // 			var_dump($_GET);
 			$_obj = new Remaining();
 			$_obj->create_at = date("Y-m-d H:i:s");
+			$_obj->consume_time = $_GET['year'].'-'.$_GET['month'].'-'.$_GET['day'];
 			$_obj->detail = $_GET['desc'];
 			$_obj->id_str = uniqid();
 			$_obj->amount = $_GET['money'];
@@ -131,9 +132,12 @@ class SiteController extends Controller
 //     	echo date("Y-m-d H:i:s");
     	$_records_num = 10;
 //     	$_records = Remaining::find()->limit($_records_num)->orderBy("create_at desc")->all();
-    	$_records = Remaining::find()->orderBy("create_at desc")->all();
+    	$_records = Remaining::find()->orderBy("consume_time desc")->all();
     	return $this->renderPartial("display",[
     			'rows'=>$_records,
     	]);
     }
+	
+	
+
 }
